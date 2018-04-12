@@ -1,25 +1,27 @@
 package se.denisen;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 	// write your code here
+        int[] arr;
+        arr = new int[0];
+        start(arr,0);
     }
 
-    public static int start(){
-        int[] array = new int[3];
-        array[0] = 2;
-        array[1] = 1;
-        array[2] = 3;
-
+    public static int start(int[] array, int k) throws IOException {
+        randFile();
         sort(array, (array.length - 1));
 
-        for (int x = 0; x < array.length; x++) {
-            System.out.println(" " + array[x]);
-        }
         System.out.println("");
-        System.out.println("Binary search (R): " + rBsearch(array, 0, (array.length-1), 0));
-        return rBsearch(array, 0, (array.length-1), 0);
+        System.out.println("Binary search (R): " + rBsearch(array, 0, (array.length-1), k));
+        int res = rBsearch(array, 0, (array.length-1), k);
+        return res;
     }
 
     public static void sort(int[] a, int last) {
@@ -39,10 +41,8 @@ public class Main {
         } else if (L[mid] == k) {
             return L[mid];
         } else if (L[mid] < k) {
-            int midd = mid+1;
             return rBsearch(L, mid + 1, high, k);
         } else {
-            int middd = mid-1;
             return rBsearch(L, low, mid - 1, k);
         }
     }
@@ -63,4 +63,57 @@ public class Main {
         arr[last] = arr[max];
         arr[max] = temp;
     }
+
+    private static void randFile() throws FileNotFoundException, IOException{
+        Random rand = new Random();
+        File fout = new File("rand.txt");
+        FileOutputStream fos = new FileOutputStream(fout);
+        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(
+                fos, "UTF-8"));
+        try {
+            for (int i = 0; i < 10; i++) {
+                for(int j=0; j<11; j++){
+                    out.write(Integer.toString(rand.nextInt(9))+ " ");
+
+                }
+                out.newLine();
+            }
+        } finally {
+            out.close();
+        }
+    }
+    /*private static void pairFile() throws FileNotFoundException, IOException{
+        Random rand = new Random();
+        File fout = new File("pair.txt");
+        FileOutputStream fos = new FileOutputStream(fout);
+        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(
+                fos, "UTF-8"));
+        String[] list1 = {"1", };
+        String[] list2 = {"0","1","2","3","4","5","6","7","8","9"};
+        try {
+            for(int j=0; j<11; j++){
+                out.write(Integer.toString(rand.nextInt())+ " ");
+            }
+            for (int i = 0; i < 4; i++) {
+
+                out.newLine();
+            }
+        } finally {
+            out.close();
+        }
+    }
+    public int[][] cartesianProduct(int[] s1, int[] s2) {
+        List<int[]> list = new ArrayList<>();
+        for (int v1: s1) {
+            for (int v2: s2) {
+                list.add(new int[]{v1, v2});
+            }
+        }
+        int[][] result = new int[list.size()][2];
+        int k=0;
+        for(int[] i: list){
+            result[k++] = i;
+        }
+        return result;
+    }*/
 }
