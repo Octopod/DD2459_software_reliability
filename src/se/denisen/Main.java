@@ -60,7 +60,8 @@ public class Main {
 
     public static void swap(int[] arr, int last, int max) {
         int temp = arr[last];
-        arr[last] = arr[max];
+        //Err2: corr: arr[last]=arr[max]
+        arr[max] = arr[last];
         arr[max] = temp;
     }
 
@@ -72,8 +73,7 @@ public class Main {
                 fos, "UTF-8"));
         try {
             for (int i = 0; i < 10; i++) {
-                //Err: corr: j<11
-                for(int j=0; j<10; j++){
+                for(int j=0; j<11; j++){
                     out.write(Integer.toString(rand.nextInt(9))+ " ");
 
                 }
