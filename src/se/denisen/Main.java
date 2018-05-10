@@ -36,7 +36,8 @@ public class Main {
 
         int mid = (low + high) / 2;
 
-        if (low > high) {
+        //Corr: low>high
+        if (low < high) {
             return -1;
         } else if (L[mid] == k) {
             return L[mid];
