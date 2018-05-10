@@ -51,7 +51,8 @@ public class Main {
 
         int max = 0;
         for (int i = 0; i <= last; i++) {
-            if (arr[i] > arr[max]) {
+            //Err3: corr: arr[i]>arr[max]
+            if (arr[i] < arr[max]) {
                 max = i;
             }
         }
