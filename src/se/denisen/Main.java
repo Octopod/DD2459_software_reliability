@@ -33,8 +33,8 @@ public class Main {
     }
 
     public static int rBsearch(int[] L, int low, int high, int k) {
-
-        int mid = (low + high) / 2;
+        //Err4: corr: (low+high)/2
+        int mid = (low + high);
 
         if (low > high) {
             return -1;
